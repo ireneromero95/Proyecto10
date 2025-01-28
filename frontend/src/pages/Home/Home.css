@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+}
+
+.evento {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.evento > img {
+  width: 200px;
+  height: 70%;
+  object-fit: contain;
+}
+
+.evento > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.eventos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.evento > .like {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: all 0.5s;
+  position: absolute;
+  top: -5px;
+  right: 3px;
+}
+
+.evento > .like:hover {
+  transform: scale(1.1);
+}
+
+.select {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+#menuDesplegable {
+  display: flex;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  width: 200px;
+  align-items: center;
+  /* position: absolute; */
+}
+
+#menuDesplegable ul {
+  height: 50px;
+  list-style-type: none;
+  padding: 0;
+}
+
+#menuDesplegable li {
+  padding: 8px;
+  font-size: 11px;
+  border-bottom: 1px solid #ddd;
+}
+
+#menuDesplegable li:last-child {
+  border-bottom: none;
+}
+
+/* Clase para mostrar el menú */
+
+.oculto {
+  visibility: hidden;
+}
+.mostrar {
+  display: flex;
+}
