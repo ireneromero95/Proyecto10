@@ -19,4 +19,20 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: #fff;
+  color: #000;
+}
+
+/* Ajustes para el modo oscuro */
+@media (prefers-color-scheme: dark) {
+  #formEvento {
+    background-color: #333;
+  }
+
+  #formEvento input,
+  #formEvento button {
+    background-color: #555;
+    color: #fff;
+    border: 1px solid #444;
+  }
 }
