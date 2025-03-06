@@ -16,6 +16,8 @@ export const CrearEvento = async () => {
   inputName.placeholder = 'Nombre del evento';
   inputCiudad.placeholder = 'Ciudad del evento';
   inputPrecio.placeholder = 'Precio del evento';
+  inputPrecio.type = 'number';
+  inputPrecio.min = 0;
   inputCartel.type = 'file';
   inputCartel.accept = 'image/*';
   button.textContent = 'Crear Evento';
