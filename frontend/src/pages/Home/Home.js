@@ -15,101 +15,6 @@ export const Home = async () => {
   pintarEventos(respuestaEventos, main);
 };
 
-// export const pintarEventos = async (eventos, elementoPadre) => {
-//   if (localStorage.getItem('user')) {
-//     loggedIn = true;
-//   } else {
-//     loggedIn = false;
-//   }
-//   const divEventos = document.createElement('div');
-//   divEventos.className = 'eventos';
-
-//   for (const evento of eventos) {
-//     const divEvento = document.createElement('div');
-//     const titulo = document.createElement('h3');
-//     const info = document.createElement('div');
-//     const portada = document.createElement('img');
-//     const btnDesplegable = document.createElement('button');
-//     const menuDesplegable = document.createElement('div');
-//     const like = document.createElement('img');
-
-//     if (loggedIn) {
-//       //Asistire
-//       like.className = 'like';
-//       like.addEventListener('click', () => {
-//         addAsistire(evento._id);
-//         addUser(evento);
-//       });
-
-//       const user = JSON.parse(localStorage.getItem('user'));
-//       if (user?.asistire?.includes(evento._id)) {
-//         like.src = './assets/relleno-like.png';
-//       } else {
-//         like.src = '/assets/like.png';
-//       }
-
-//       //Asistentes
-//       btnDesplegable.style.display = 'flex';
-//       btnDesplegable.className = 'btnAsistentes';
-//       btnDesplegable.textContent = 'Asistentes';
-//       btnDesplegable.addEventListener('click', () => {
-//         if (menuDesplegable.className === 'oculto') {
-//           menuDesplegable.className = 'mostrar';
-//         } else {
-//           menuDesplegable.className = 'oculto';
-//         }
-//       });
-
-//       //aqui esta el menudesplegable
-//       menuDesplegable.className = 'oculto';
-//       menuDesplegable.setAttribute('id', 'menuDesplegable');
-//       const ul = document.createElement('ul');
-//       //Esto es para buscar los usuarios
-//       for (const asistenteId of evento.asistentes) {
-//         try {
-//           const res = await reuseFetch(
-//             `http://localhost:3000/api/v1/users/${asistenteId}`,
-//             'GET'
-//           );
-
-//           const user = await res.json();
-
-//           const li = document.createElement('li');
-//           li.textContent = user.userName;
-//           ul.appendChild(li);
-//         } catch {
-//           console.log('Error pero esta dentro');
-//         }
-//       }
-//       if (ul === '') {
-//         menuDesplegable.append();
-//       }
-//       menuDesplegable.append(ul);
-//     } else {
-//       btnDesplegable.style.display = 'none';
-//     }
-
-//     divEvento.className = 'evento';
-
-//     titulo.textContent = evento.nombre;
-//     portada.src = evento.cartel;
-//     //Añadir
-
-//     info.innerHTML = `<p>${evento.ciudad}</p>
-//     <p>${evento.precio}€</p>`;
-//     divEvento.append(
-//       titulo,
-//       portada,
-//       info,
-//       btnDesplegable && btnDesplegable,
-//       menuDesplegable && menuDesplegable,
-//       like
-//     );
-//     divEventos.append(divEvento);
-//   }
-//   elementoPadre.append(divEventos);
-// };
-
 export const pintarEventos = async (eventos, elementoPadre) => {
   if (localStorage.getItem('user')) {
     loggedIn = true;
@@ -228,16 +133,28 @@ const addAsistire = async (idEvento) => {
 };
 
 const addUser = async (evento) => {
+  console.log(evento.asistentes);
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user._id;
+
   if (!evento.asistentes) {
-    // console.log('Esto esta pasando?');
     evento.asistentes = [];
   } else {
-    if (evento.asistentes.includes(userId)) {
-      evento.asistentes = evento.asistentes.filter((id) => id !== userId);
+    // He tenido que hacerlo todo diferente porque era un objeto y no me servia el includes
+    const userIndex = evento.asistentes.findIndex(
+      (asistente) =>
+        // contemplar q sea un objeto xq no me entero ya
+        (typeof asistente === 'object' && asistente._id === userId) ||
+        asistente === userId
+    );
+
+    if (userIndex !== -1) {
+      evento.asistentes.splice(userIndex, 1);
     } else {
-      evento.asistentes = [...evento.asistentes, userId];
+      evento.asistentes = [
+        ...evento.asistentes,
+        { _id: userId, userName: user.userName }
+      ];
     }
   }
 
