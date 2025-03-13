@@ -1,5 +1,6 @@
 import { reuseFetch } from '../../components/reusableFetch/reusableFetch';
 import './CrearEvento.css';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const CrearEvento = async () => {
   const main = document.querySelector('main');
@@ -62,11 +63,7 @@ const submitEvento = async (nombre, ciudad, precio, cartel) => {
 
   // const res = await fetch('http://localhost:3000/api/v1/eventos', opciones);
 
-  const res = await reuseFetch(
-    'http://localhost:3000/api/v1/eventos',
-    'POST',
-    formData
-  );
+  const res = await reuseFetch(`${API_URL}/eventos`, 'POST', formData);
 
   loadingText.remove();
   const form = document.querySelector('#formEvento');

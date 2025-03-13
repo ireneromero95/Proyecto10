@@ -1,6 +1,7 @@
 import './Home.css';
 import { pintarSelect } from '../../components/FiltroCiudad/FiltroCiudad';
 import { reuseFetch } from '../../components/reusableFetch/reusableFetch';
+const API_URL = import.meta.env.VITE_API_URL;
 
 /* http://localhost:3000/api/v1/eventos */
 
@@ -9,7 +10,8 @@ let loggedIn = false;
 export const Home = async () => {
   const main = document.querySelector('main');
   main.innerHTML = '';
-  const res = await fetch('http://localhost:3000/api/v1/eventos');
+
+  const res = await fetch(`${API_URL}/eventos`);
   const respuestaEventos = await res.json();
   pintarSelect(respuestaEventos, main);
   pintarEventos(respuestaEventos, main);
@@ -114,7 +116,7 @@ const addAsistire = async (idEvento) => {
     });
 
     const res = await reuseFetch(
-      `http://localhost:3000/api/v1/users/${user._id}`,
+      `${API_URL}/users/${user._id}`,
       'PUT',
       objetoFinal, // Pasa el cuerpo aquí
       {
@@ -163,7 +165,7 @@ const addUser = async (evento) => {
   });
 
   const res = await reuseFetch(
-    `http://localhost:3000/api/v1/eventos/${evento._id}`,
+    `${API_URL}/eventos/${evento._id}`,
     'PUT',
     objetoFinal,
     {

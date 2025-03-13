@@ -2,6 +2,7 @@ import { Header } from '../../components/Header/Header';
 import { reuseFetch } from '../../components/reusableFetch/reusableFetch';
 import { Home } from '../Home/Home';
 import './LoginRegister.css';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const LoginRegister = () => {
   const main = document.querySelector('main');
@@ -61,12 +62,9 @@ const submitLogin = async (userName, password, form) => {
 
   // const res = await fetch('http://localhost:3000/api/v1/users/login', opciones);
 
-  const res = await reuseFetch(
-    'http://localhost:3000/api/v1/users/login',
-    'POST',
-    objetoFinal,
-    { 'Content-Type': 'application/json' }
-  );
+  const res = await reuseFetch(`${API_URL}/users/login`, 'POST', objetoFinal, {
+    'Content-Type': 'application/json'
+  });
 
   if (res.status === 400) {
     const pError = document.createElement('p');
@@ -140,7 +138,7 @@ const submitRegister = async (userName, correo, password, form) => {
   });
 
   const res = await reuseFetch(
-    'http://localhost:3000/api/v1/users/register',
+    `${API_URL}/users/register`,
     'POST',
     objetoFinal,
     { 'Content-Type': 'application/json' }
