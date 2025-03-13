@@ -2,8 +2,8 @@ const Evento = require('../models/evento');
 
 const getEventos = async (req, res, next) => {
   try {
-    //Falta el populate
-    const eventos = await Evento.find();
+    //Añadí el populate
+    const eventos = await Evento.find().populate('asistentes');
     return res.status(200).json(eventos);
   } catch (error) {
     return res.status(400).json('error');
@@ -30,9 +30,9 @@ const postEvento = async (req, res, next) => {
 
 const getEventoById = async (req, res, next) => {
   try {
-    //Falta el populate?
+    //Añadi el populate
     const { id } = req.params;
-    const evento = await Evento.findById(id);
+    const evento = await Evento.findById(id).populate('asistentes');
     return res.status(200).json(evento);
   } catch (error) {
     return res.status(400).json('error');
