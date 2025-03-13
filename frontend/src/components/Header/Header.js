@@ -6,10 +6,10 @@ import './Header.css';
 
 //Va sin los paréntesis para que no se autoejecute
 const routes = [
-  { texto: 'Home', funcion: Home },
-  { texto: 'Asistire', funcion: Asistire },
-  { texto: 'Crear Evento', funcion: CrearEvento },
-  { texto: 'Login', funcion: LoginRegister }
+  { texto: 'Home', funcion: Home, ruta: '/home' },
+  { texto: 'Asistire', funcion: Asistire, ruta: '/asistire' },
+  { texto: 'Crear Evento', funcion: CrearEvento, ruta: '/crear-evento' },
+  { texto: 'Login', funcion: LoginRegister, ruta: '/login-register' }
 ];
 
 export const Header = () => {
@@ -21,6 +21,8 @@ export const Header = () => {
   for (const route of routes) {
     const a = document.createElement('a');
     a.href = '#';
+
+    //REVISAR ESTO DE
 
     if (route.texto === 'Login' && isAuth) {
       a.textContent = 'Logout';
