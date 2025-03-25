@@ -11,6 +11,6 @@ export const reuseFetch = async (api, method, payload = null, headers = {}) => {
   return await fetch(api, options)
     .then((res) => res)
     .catch((error) => {
-      console.log('Esta fallando pero sabe donde esta');
+      console.log('Esta fallando el reuseFetch');
     });
 };

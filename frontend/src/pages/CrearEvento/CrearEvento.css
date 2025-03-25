@@ -6,24 +6,34 @@
   width: 100%;
   max-width: 400px;
   padding: 20px;
-  background-color: #f8f8f8;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
   justify-self: center;
 }
 
 #formEvento input,
 #formEvento button {
   width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  color: #000;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
 }
 
-/* Ajustes para el modo oscuro */
+#formEvento input:hover,
+#formEvento input:focus,
+#formEvento button:hover,
+#formEvento button:focus {
+  border-color: #007bff;
+  background-color: #e0e0e0;
+}
+
 @media (prefers-color-scheme: dark) {
   #formEvento {
     background-color: #333;
@@ -34,5 +44,13 @@
     background-color: #555;
     color: #fff;
     border: 1px solid #444;
+  }
+
+  #formEvento input:hover,
+  #formEvento input:focus,
+  #formEvento button:hover,
+  #formEvento button:focus {
+    border-color: #007bff;
+    background-color: #666;
   }
 }

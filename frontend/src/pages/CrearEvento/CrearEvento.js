@@ -1,4 +1,4 @@
-import { reuseFetch } from '../../components/reusableFetch/reusableFetch';
+import { reuseFetch } from '../../utils/reusableFetch/reusableFetch';
 import './CrearEvento.css';
 const API_URL = import.meta.env.VITE_API_URL;
 

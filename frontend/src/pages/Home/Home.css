@@ -19,6 +19,11 @@
   width: 200px;
   height: 70%;
   object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.evento > img:hover {
+  transform: scale(1.2);
 }
 
 .evento > div {
@@ -65,23 +70,20 @@
   border: 1px solid #ddd;
   width: 200px;
   align-items: center;
-  /* position: absolute; */
 }
 
 #menuDesplegable ul {
   height: 50px;
   list-style-type: none;
   padding: 0;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 200px; /* Opcional: establece una altura máxima */
 }
 
 #menuDesplegable li {
   padding: 8px;
   font-size: 11px;
-  border-bottom: 1px solid #ddd;
-}
-
-#menuDesplegable li:last-child {
-  border-bottom: none;
 }
 
 /* Clase para mostrar el menú */
@@ -91,4 +93,11 @@
 }
 .mostrar {
   display: flex;
+}
+
+@media (prefers-color-scheme: dark) {
+  #menuDesplegable {
+    background-color: #555;
+    border: 1px solid #444;
+  }
 }

@@ -1,6 +1,6 @@
 import './Home.css';
 import { pintarSelect } from '../../components/FiltroCiudad/FiltroCiudad';
-import { reuseFetch } from '../../components/reusableFetch/reusableFetch';
+import { reuseFetch } from '../../utils/reusableFetch/reusableFetch';
 const API_URL = import.meta.env.VITE_API_URL;
 
 /* http://localhost:3000/api/v1/eventos */

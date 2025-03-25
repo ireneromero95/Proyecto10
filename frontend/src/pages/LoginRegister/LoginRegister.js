@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header/Header';
-import { reuseFetch } from '../../components/reusableFetch/reusableFetch';
+import { reuseFetch } from '../../utils/reusableFetch/reusableFetch';
 import { Home } from '../Home/Home';
 import './LoginRegister.css';
 const API_URL = import.meta.env.VITE_API_URL;
@@ -147,7 +147,7 @@ const submitRegister = async (userName, correo, password, form) => {
   if (res.status === 400) {
     const pError = document.createElement('p');
     pError.classList.add('error');
-    pError.textContent = 'Algo ha fallado creando el usuario';
+    pError.textContent = 'Usuario o corre ya';
     form.append(pError);
     return;
   }
