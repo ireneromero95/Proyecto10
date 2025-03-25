@@ -8,7 +8,7 @@ const isAuth = async (req, res, next) => {
     const parsedToken = token.replace('Bearer ', '');
     const { id } = verifyKey(parsedToken);
     const user = await User.findById(id);
-    user.passqord = null;
+    user.password = null;
     req.user = user;
     next();
   } catch (error) {
