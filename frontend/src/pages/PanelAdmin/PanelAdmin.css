@@ -1,0 +1,84 @@
+#panel select {
+  margin-top: 20px;
+}
+
+.evento > .borrar {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: all 0.5s;
+  position: absolute;
+  top: -5px;
+  right: 3px;
+}
+
+.evento > .borrar:hover {
+  transform: scale(1.1);
+}
+
+/* PARTE DE USUARIOS */
+
+.contenedor-usuarios {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.usuario-card {
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Para posicionar el botón en la esquina */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.usuario-card:hover {
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+}
+
+.usuario-card p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.usuario-card .nombre {
+  font-weight: bold;
+}
+
+.usuario-card button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  background-color: #ff4c4c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.usuario-card button:hover {
+  background-color: #ff2a2a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .usuario-card {
+    background-color: #333;
+    color: #fff;
+  }
+
+  .usuario-card button {
+    background-color: #d9534f;
+    border: none;
+  }
+
+  .usuario-card button:hover {
+    background-color: #c9302c;
+  }
+}

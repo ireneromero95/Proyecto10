@@ -8,8 +8,21 @@ export const Asistire = async () => {
   main.innerHTML = '';
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const res = await fetch(`${API_URL}/users/${user._id}`);
-  const usuario = await res.json();
-  pintarSelect(usuario.asistire, main);
-  pintarEventos(usuario.asistire, main);
+  try {
+    const eventosPromises = user.asistire.map(async (eventoId) => {
+      const res = await fetch(`${API_URL}/eventos/${eventoId}`);
+      const evento = await res.json();
+      return evento;
+    });
+
+    const eventos = await Promise.all(eventosPromises);
+
+    pintarSelect(eventos, main);
+
+    pintarEventos(eventos, main);
+  } catch (error) {
+    console.error('Error al cargar los eventos:', error);
+    main.innerHTML =
+      '<p>Error al cargar los eventos. Por favor, intenta de nuevo.</p>';
+  }
 };

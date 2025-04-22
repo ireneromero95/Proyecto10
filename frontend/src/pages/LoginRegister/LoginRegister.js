@@ -50,18 +50,6 @@ const submitLogin = async (userName, password, form) => {
     password
   });
 
-  ///PROBANDO A HACER LO DE UNO SOLO
-
-  // const opciones = {
-  //   method: 'POST',
-  //   body: objetoFinal,
-  //   headers: {
-  //     'Content-type': 'application/json'
-  //   }
-  // };
-
-  // const res = await fetch('http://localhost:3000/api/v1/users/login', opciones);
-
   const res = await reuseFetch(`${API_URL}/users/login`, 'POST', objetoFinal, {
     'Content-Type': 'application/json'
   });
@@ -81,8 +69,10 @@ const submitLogin = async (userName, password, form) => {
   const respuestaFinal = await res.json();
 
   localStorage.setItem('token', respuestaFinal.token);
+  localStorage.setItem('rol', respuestaFinal.user.rol);
   respuestaFinal.user.password = null;
   localStorage.setItem('user', JSON.stringify(respuestaFinal.user));
+  console.log(respuestaFinal.user);
   Home();
   Header();
 };
@@ -159,6 +149,7 @@ const submitRegister = async (userName, correo, password, form) => {
   const respuestaFinal = await res.json();
   localStorage.setItem('token', respuestaFinal.token);
   localStorage.setItem('user', JSON.stringify(respuestaFinal.user));
+  console.log(respuestaFinal.user);
   Home();
   Header();
 };

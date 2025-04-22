@@ -13,7 +13,7 @@ export const CrearEvento = async () => {
   const button = document.createElement('button');
 
   form.setAttribute('id', 'formEvento');
-  button.textContent = 'Crear Evento';
+
   inputName.placeholder = 'Nombre del evento';
   inputCiudad.placeholder = 'Ciudad del evento';
   inputPrecio.placeholder = 'Precio del evento';
@@ -26,14 +26,35 @@ export const CrearEvento = async () => {
   form.append(inputName, inputCiudad, inputPrecio, inputCartel, button);
   main.appendChild(form);
 
-  form.addEventListener('submit', () =>
-    submitEvento(
+  //EMPIEZO AQUI
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const mensajeAnterior = document.querySelector('.error');
+    if (mensajeAnterior) mensajeAnterior.remove();
+    const errores = [];
+    if (!inputName.value.trim()) errores.push('nombre');
+    if (!inputCiudad.value.trim()) errores.push('ciudad');
+    if (!inputPrecio.value.trim()) errores.push('precio');
+    if (!inputCartel.files[0]) errores.push('cartel');
+
+    if (errores.length > 0) {
+      const pError = document.createElement('p');
+      pError.classList.add('error');
+      pError.textContent = `Faltan los siguientes campos: ${errores.join(
+        ', '
+      )}`;
+      form.append(pError);
+      return;
+    }
+    await submitEvento(
       inputName.value,
       inputCiudad.value,
       inputPrecio.value,
       inputCartel.files[0]
-    )
-  );
+    );
+  });
 };
 
 const submitEvento = async (nombre, ciudad, precio, cartel) => {
