@@ -55,12 +55,9 @@ const updateUser = async (req, res, next) => {
         .status(400)
         .json('No puedes actualizar alguien que no seas tú');
     }
-    const oldUser = await User.findById(id);
+
     const newUser = new User(req.body);
     newUser._id = id;
-    // const evento = req.body.evento;
-    // console.log(`Este es el buscado ${evento}`);
-    // newUser.asistire = [...oldUser.asistire, ...newUser.asistire]; Al parecer esto daba problema??
     const userUpdated = await User.findByIdAndUpdate(id, newUser, {
       new: true
     });
@@ -84,7 +81,23 @@ const login = async (req, res, next) => {
     }
     return res.status(400).json('Usuario o contraseña incorrectos');
   } catch (error) {
+    console.error('Error en el login:', error);
     return res.status(400).json('Error con el inicio de sesión');
+  }
+};
+
+const deleteUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByIdAndDelete(id);
+
+    if (!user) {
+      return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+    }
+
+    return res.status(200).json({ mensaje: 'Usuario eliminado con éxito' });
+  } catch (error) {
+    return res.status(400).json({ mensaje: 'Error al eliminar el usuario' });
   }
 };
 
@@ -93,5 +106,6 @@ module.exports = {
   getUserById,
   register,
   updateUser,
-  login
+  login,
+  deleteUser
 };
