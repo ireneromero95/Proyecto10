@@ -33,6 +33,12 @@ app.use('*', (req, res, next) => {
   return res.status(404).json('Route Not Found');
 });
 
-app.listen(3000, () => {
-  console.log('Conectado con éxito al servidor http://localhost:3000');
+// app.listen(3000, () => {
+//   console.log('Conectado con éxito al servidor http://localhost:3000');
+// });
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
