@@ -11,11 +11,11 @@ const {
 
 const usersRouter = require('express').Router();
 
-usersRouter.get('/', isAuth, getUsers);
-usersRouter.get('/:id', getUserById);
+usersRouter.get('/', getUsers);
+usersRouter.get('/:id', isAuth, isAdmin, getUserById);
 usersRouter.post('/register', register);
 usersRouter.put('/:id', isAuth, updateUser);
 usersRouter.post('/login', login);
-usersRouter.delete('/:id', isAuth, deleteUser);
+usersRouter.delete('/:id', isAuth, isAdmin, deleteUser);
 
 module.exports = usersRouter;

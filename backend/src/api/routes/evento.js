@@ -1,3 +1,4 @@
+const { isAdmin } = require('../../middlewares/admin');
 const { isAuth } = require('../../middlewares/auth');
 const uploadCartel = require('../../middlewares/file');
 const {
@@ -14,6 +15,6 @@ eventosRouter.get('/', getEventos);
 eventosRouter.get('/:id', getEventoById);
 eventosRouter.post('/', uploadCartel.single('cartel'), postEvento);
 eventosRouter.put('/:id', isAuth, updateEvento);
-eventosRouter.delete('/:id', isAuth, deleteEvento);
+eventosRouter.delete('/:id', isAuth, isAdmin, deleteEvento);
 
 module.exports = eventosRouter;

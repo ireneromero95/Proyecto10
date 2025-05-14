@@ -76,7 +76,8 @@ const login = async (req, res, next) => {
     }
 
     if (bcrypt.compareSync(password, user.password)) {
-      const token = generateKey(user._id);
+      //Aqui he añadido el rol
+      const token = generateKey(user._id, user.rol);
       return res.status(200).json({ token, user });
     }
     return res.status(400).json('Usuario o contraseña incorrectos');
