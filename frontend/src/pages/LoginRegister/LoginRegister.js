@@ -137,7 +137,7 @@ const submitRegister = async (userName, correo, password, form) => {
   if (res.status === 400) {
     const pError = document.createElement('p');
     pError.classList.add('error');
-    pError.textContent = 'Usuario o corre ya';
+    pError.textContent = 'Usuario o correo ya existentes';
     form.append(pError);
     return;
   }
