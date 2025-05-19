@@ -113,6 +113,10 @@ const Register = (elementoPadre) => {
 };
 
 const submitRegister = async (userName, correo, password, form) => {
+  if (document.querySelector('.error')) {
+    document.querySelector('.error').remove();
+  }
+
   if (!userName || !correo || !password) {
     const pError = document.createElement('p');
     pError.classList.add('error');
