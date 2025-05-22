@@ -96,9 +96,41 @@
   display: flex;
 }
 
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  margin-top: 60px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffe6e6;
+  border: 1px solid #ffcccc;
+  width: 80%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error-message {
+  color: #cc0000;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 @media (prefers-color-scheme: dark) {
   #menuDesplegable {
     background-color: #555;
     border: 1px solid #444;
+  }
+
+  .error-container {
+    background-color: #4b1e1e;
+    border: 1px solid #772222;
+  }
+
+  .error-message {
+    color: #ff8888;
   }
 }

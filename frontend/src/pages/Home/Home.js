@@ -14,10 +14,26 @@ export const Home = async () => {
   const main = document.querySelector('main');
   main.innerHTML = '';
 
-  const res = await fetch(`${API_URL}/eventos`);
-  const respuestaEventos = await res.json();
-  pintarSelect(respuestaEventos, main);
-  pintarEventos(respuestaEventos, main);
+  try {
+    const res = await fetch(`${API_URL}/eventos`);
+    if (!res.ok) {
+      throw new Error(`Error del servidor: ${res.status}`);
+    }
+
+    const respuestaEventos = await res.json();
+    pintarSelect(respuestaEventos, main);
+    pintarEventos(respuestaEventos, main);
+  } catch (error) {
+    console.error('Error al cargar eventos:', error);
+    const errorContainer = document.createElement('div');
+    errorContainer.className = 'error-container';
+    const errorMessage = document.createElement('div');
+    errorMessage.className = 'error';
+    errorMessage.textContent =
+      'Lo sentimos, ha ocurrido un error al cargar los eventos. Por favor, inténtalo más tarde.';
+    errorContainer.appendChild(errorMessage);
+    main.appendChild(errorContainer);
+  }
 };
 //He añadido aqui un nolike
 export const pintarEventos = async (eventos, elementoPadre, nolike = false) => {
