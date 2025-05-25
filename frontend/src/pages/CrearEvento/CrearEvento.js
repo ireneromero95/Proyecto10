@@ -77,13 +77,6 @@ const submitEvento = async (nombre, ciudad, precio, cartel) => {
   formData.append('precio', precio);
   formData.append('cartel', cartel);
 
-  // const opciones = {
-  //   method: 'POST',
-  //   body: formData
-  // };
-
-  // const res = await fetch('http://localhost:3000/api/v1/eventos', opciones);
-
   const res = await reuseFetch(`${API_URL}/eventos`, 'POST', formData);
 
   loadingText.remove();

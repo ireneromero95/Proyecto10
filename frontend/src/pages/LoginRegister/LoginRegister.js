@@ -131,6 +131,10 @@ const submitRegister = async (userName, correo, password, form) => {
     password
   });
 
+  const loadingText = document.createElement('p');
+  loadingText.textContent = 'Creando usuario...';
+  form.append(loadingText);
+
   const res = await reuseFetch(
     `${API_URL}/users/register`,
     'POST',
@@ -139,6 +143,7 @@ const submitRegister = async (userName, correo, password, form) => {
   );
 
   if (res.status === 400) {
+    loadingText.remove();
     const pError = document.createElement('p');
     pError.classList.add('error');
     pError.textContent = 'Usuario o correo ya existentes';
@@ -154,6 +159,8 @@ const submitRegister = async (userName, correo, password, form) => {
   localStorage.setItem('token', respuestaFinal.token);
   localStorage.setItem('user', JSON.stringify(respuestaFinal.user));
   console.log(respuestaFinal.user);
+  loadingText.remove();
+
   Home();
   Header();
 };

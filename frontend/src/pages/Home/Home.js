@@ -2,6 +2,7 @@ import './Home.css';
 import { pintarSelect } from '../../components/FiltroCiudad/FiltroCiudad';
 import { reuseFetch } from '../../utils/reusableFetch/reusableFetch';
 import { eliminarEvento } from '../PanelAdmin/PanelAdmin';
+import { hideLoading, showLoading } from '../../components/Loading/Loading';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -14,6 +15,8 @@ export const Home = async () => {
   const main = document.querySelector('main');
   main.innerHTML = '';
 
+  showLoading(main);
+
   try {
     const res = await fetch(`${API_URL}/eventos`);
     if (!res.ok) {
@@ -21,9 +24,11 @@ export const Home = async () => {
     }
 
     const respuestaEventos = await res.json();
+    hideLoading();
     pintarSelect(respuestaEventos, main);
     pintarEventos(respuestaEventos, main);
   } catch (error) {
+    hideLoading();
     console.error('Error al cargar eventos:', error);
     const errorContainer = document.createElement('div');
     errorContainer.className = 'error-container';

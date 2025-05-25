@@ -1,0 +1,25 @@
+.loading {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 50px;
+  color: #333;
+  animation: pulse 1s infinite ease-in-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .loading {
+    color: #ddd;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
