@@ -28,9 +28,10 @@
 
 .evento > div {
   display: flex;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .eventos {
@@ -62,38 +63,6 @@
   justify-content: center;
   margin-bottom: 40px;
   width: 100%;
-}
-
-#menuDesplegable {
-  display: flex;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 0.2;
-  width: 300px;
-  height: 300px;
-  align-items: center;
-  font-size: 16px;
-}
-
-#menuDesplegable ul {
-  height: 100px;
-  list-style-type: none;
-  padding: 0;
-  overflow-y: auto;
-  width: 100%;
-  max-height: 200px;
-}
-
-#menuDesplegable li {
-  padding: 8px;
-  font-size: 20px;
-}
-
-.oculto {
-  visibility: hidden;
-}
-.mostrar {
-  display: flex;
 }
 
 .error-container {
